@@ -1,0 +1,16 @@
+<template>
+
+    <require from="components/main-header.html"></require>
+    <require from="components/icon-bar.html"></require>
+
+
+    <div class="page-host">
+        <main-header></main-header>
+        <div class="content-wrapper">
+            <div class="content">
+                <router-view containerless></router-view>
+            </div>
+        </div>
+        <icon-bar router.bind="router"></icon-bar>
+    </div>
+</template>
