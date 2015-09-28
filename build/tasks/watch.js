@@ -9,7 +9,7 @@ function reportChange(event) {
 gulp.task('watch', ['serve'], function () {
     gulp.watch(paths.sourceTS, ['build-system', browserSync.reload]).on('change', reportChange);
     gulp.watch(paths.html, ['build-html', browserSync.reload]).on('change', reportChange);
-    gulp.watch(paths.css, ['build-css', browserSync.reload]).on('change', reportChange);
+    gulp.watch(paths.css + '**/*.css', ['build-css', browserSync.reload]).on('change', reportChange);
     gulp.watch(paths.sass + '**/*.scss', ['build-sass', browserSync.reload]).on('change', reportChange);
     gulp.watch(paths.js, ['build-js', browserSync.reload]).on('change', reportChange);
 });
