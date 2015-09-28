@@ -39,7 +39,7 @@ gulp.task('build-system', function () {
 gulp.task('build-sass', function () {
     gulp.src(paths.sass + '**/styles.scss', {base: paths.sass})
         //.pipe(changed(paths.sass, {extension: '.scss'}))
-        .pipe(sourcemaps.init())
+
         .pipe(sass({
             style: 'expanded',
             //includePaths: [
@@ -48,7 +48,6 @@ gulp.task('build-sass', function () {
             //],
             errLogToConsole: true
         }))
-        .pipe(sourcemaps.write('./'))
         .pipe(rename('sass.css'))
         .pipe(gulp.dest(paths.css))
 });
@@ -57,6 +56,7 @@ gulp.task('build-sass', function () {
 gulp.task('build-css', function () {
     return gulp.src(paths.css + '**/*.css', {base: paths.css})
         // .pipe(changed(paths.cssOutput, {extension: '.css'}))
+        .pipe(sourcemaps.init())
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false
@@ -64,6 +64,7 @@ gulp.task('build-css', function () {
         .pipe(concat('all.css'))
         .pipe(minifycss())
         .pipe(rename('style.min.css'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.cssOutput));
 });
 
